@@ -11,10 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2) do
+ActiveRecord::Schema.define(version: 6) do
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "cedula",     null: false
+    t.string   "nombres",    null: false
+    t.string   "direccion"
+    t.string   "telefono"
+    t.string   "correo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "nombre",     null: false
+    t.decimal  "precio",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sale_details", force: :cascade do |t|
+    t.integer  "sale_id"
+    t.integer  "product_id"
+    t.integer  "cantidad",   null: false
+    t.decimal  "total",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sale_details", ["product_id"], name: "index_sale_details_on_product_id"
+  add_index "sale_details", ["sale_id"], name: "index_sale_details_on_sale_id"
+
+  create_table "sales", force: :cascade do |t|
+    t.date     "fecha"
+    t.decimal  "subtotal"
+    t.decimal  "total"
+    t.integer  "client_id",  null: false
+    t.integer  "user_id",    null: false
+    t.boolean  "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sales", ["client_id"], name: "index_sales_on_client_id"
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "nombres",                      null: false
+    t.string   "direccion"
+    t.string   "telefono"
+    t.boolean  "sexo"
+    t.boolean  "activo"
+    t.text     "observacion"
+    t.string   "foto"
     t.string   "email",                        null: false
     t.string   "crypted_password"
     t.string   "salt"

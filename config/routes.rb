@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :sale_details
+
+  resources :sales
+
+  resources :clients
+
+  resources :products
+
   get 'main/index'
 
   get "logout" => "sessions#destroy", :as => "logout"  

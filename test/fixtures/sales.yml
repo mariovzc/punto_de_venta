@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha: 2015-03-15
+  subtotal: 9.99
+  total: 9.99
+  client_id: 
+  user_id: 
+  estado: false
+
+two:
+  fecha: 2015-03-15
+  subtotal: 9.99
+  total: 9.99
+  client_id: 
+  user_id: 
+  estado: false
