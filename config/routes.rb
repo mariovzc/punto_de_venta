@@ -1,20 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :sale_details
 
-  resources :sales
-
-  resources :clients
-
-  resources :products
 
   get 'main/index'
-
   get "logout" => "sessions#destroy", :as => "logout"  
   get "login" => "sessions#new", :as => "login"  
   get "signup" => "users#new", :as => "signup"
 
   resources :sessions
+  resources :sale_details
+  resources :sales
+  resources :clients, except: [:show]
+  resources :products , except: [:show]
   
   root :to => "sessions#new"
 

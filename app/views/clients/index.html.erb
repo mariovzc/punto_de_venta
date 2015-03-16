@@ -10,8 +10,11 @@
   </section>
     <!-- Main content -->
   <section class="content">
-  <% flash.each do |name, msg| %>  
-    <%= content_tag :div, msg, :id => "flash_#{name}" %>    
+  <% flash.each do |name, msg| %>
+ <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+     <h4>  <i class="icon fa fa-check"></i><%= msg %></h4>
+  </div>
   <% end %>
   <%= link_to "<i class='fa fa-users'></i> Nuevo Cliente".html_safe, new_client_path, class: 'btn btn-app'%>
   <%= render 'clients'%>  
