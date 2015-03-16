@@ -1,5 +1,5 @@
 p "Creando Usuario"
-User.create(nombres: 'Mario Vizcaino', email: 'mario14791@hotmail.com')
+User.create(nombres: 'Usuario', email: 'usuario@gmail.com')
 p "Usuario Creado"
 p "Agregando Productos"
 Product.where(id: 1, nombre:  'Apple', precio: 0.99).first_or_create

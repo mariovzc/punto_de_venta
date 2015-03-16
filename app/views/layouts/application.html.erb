@@ -2,15 +2,21 @@
 <html>
 <head>
   <title>Facturacion</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%=stylesheet_link_tag "bootstrap.css"%>
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <%=stylesheet_link_tag "_all-skins.min.css"%>
+  <%=stylesheet_link_tag "AdminLTE.css"%>
+  <%=javascript_include_tag "jquery.js"%>
+  <%=yield :stylesheet%>
 </head>
-<body>
-<% flash.each do |name, msg| %>  
-<%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
+<body class="skin-green">
+<%=yield :body_head%>
+
 <%= yield %>
 
+<%=javascript_include_tag "app.min.js"%>
+<%=javascript_include_tag "bootstrap.js"%>
+<%=javascript_include_tag "application"%>
+<%=yield :javascript%>
 </body>
 </html>
