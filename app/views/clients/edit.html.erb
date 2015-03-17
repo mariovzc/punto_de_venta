@@ -1,6 +1,36 @@
-<h1>Editing Client</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @client %> |
-<%= link_to 'Back', clients_path %>
+<%content_for :stylesheet do%>
+<%end%>
+<%= render 'menu/menu'%>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <ol class="breadcrumb">
+      <li>
+		<%= link_to "<i class='fa fa-user-plus'></i> Clientes".html_safe, :clients %>
+      </li>
+      <li class="active">Editar</li>
+    </ol>
+  </section>
+    <!-- Main content -->
+  <section class="content">
+  <% flash.each do |name, msg| %>  
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>    
+  <% end %>
+	<%=form_for @client do |f|%>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<%=render 'form', f: f%>
+  	</div>
+  	<div class="text-center">
+  		<div class="form-group">
+    	<%= f.submit "Editar", class: 'btn btn-app bg-olive' %>    	
+  		</div>
+  	</div>
+ 	<%end%>  
+  </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+<%= render 'menu/footer'%>
+<% content_for :javascript do %>
+<%=javascript_include_tag "clients.js"%>
+<%=javascript_include_tag "jquery.validate.min.js"%>
+<%end%>
