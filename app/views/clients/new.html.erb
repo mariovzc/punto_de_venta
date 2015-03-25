@@ -1,4 +1,5 @@
 <%content_for :stylesheet do%>
+<%=stylesheet_link_tag "app"%>
 <%end%>
 <%= render 'menu/menu'%>
 <div class="content-wrapper">
@@ -23,8 +24,7 @@
   	</div>
   	<div class="text-center">
   		<div class="form-group">
-    			<%= f.submit "CREAR", class: 'btn btn-app bg-olive' %>
-    			<%= link_to "VOLVER".html_safe, :back, class: 'btn btn-app bg-olive'%>
+    			<%= f.submit "Agregar", class: 'btn btn-app', id: 'btn-formu' %>
   		</div>
   	</div>
  	<%end%>  
@@ -32,7 +32,7 @@
 </div><!-- /.content-wrapper -->
 <%= render 'menu/footer'%>
 <% content_for :javascript do %>
-<%=javascript_include_tag "clients.js"%>
+<%=javascript_include_tag "products"%>
 <%=javascript_include_tag "jquery.validate.min.js"%>
 
 <%end%>

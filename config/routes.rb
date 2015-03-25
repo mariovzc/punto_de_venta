@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
 
   resources :sale_details
-
-  resources :sales
-
+  resources :sales 
   resources :clients
-
   resources :products
 
   get 'main/index'

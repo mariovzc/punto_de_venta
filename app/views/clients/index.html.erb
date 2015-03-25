@@ -1,14 +1,15 @@
 <%content_for :stylesheet do%>
+<%=stylesheet_link_tag "app"%>
 <%end%>
 <%= render 'menu/menu'%>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
   <section class="content-header">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" id="miniguia">
       <li>
-        <%= link_to "<i class='fa fa-user-plus'></i> Clientes".html_safe, :clients %>
+        <%= link_to "<i class='fa fa-user-plus'></i> Clientes".html_safe, :clients, id:'submenu' %>
       </li>
-      <li class="active">Index</li>
+      <li class="active" id="submenu2">Index</li>
     </ol>
   </section>
     <!-- Main content -->
@@ -19,7 +20,7 @@
      <h4>  <i class="icon fa fa-check"></i><%= msg %></h4>
   </div>
   <% end %>
-  <%= link_to "<i class='fa fa-users'></i> Nuevo Cliente".html_safe, new_client_path, class: 'btn btn-app'%>
+  <%= link_to "<i class='fa fa-users'></i> Nuevo Cliente".html_safe, new_client_path, class: 'btn btn-app', id: 'btn-nuevo'%>
   <%= render 'clients'%>  
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->

@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-xs-12">              
+    <div class="box">
+      <div class="box-header text-center">
+        <h3 class="box-title">Lista de Articulos</h3>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <% @products.each do |product| %>
+          <tbody>
+            <tr>
+              <td><%= product.nombre %></td>
+              <td><%= number_to_currency(product.precio) %></td>
+              <td><%= link_to "<button type='button' class='btn bg-purple3 btn-gradient btn-sm'> <span class='fa fa-pencil fa-2x'></span> </button>".html_safe, edit_product_path(product) %>
+              <%= link_to "<button type='button' class='btn bg-purple3 btn-gradient btn-sm'> <span class='fa fa-trash fa-2x'></span> </button>".html_safe, product_path(product), method: :delete, data: {confirm: 'Esta Seguro de Continuar con la Acción?'} %>
+              </td>
+            </tr>           
+          </tbody>
+          <% end %>                   
+        </table>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+  </div><!-- /.col -->
+</div><!-- /.row -->

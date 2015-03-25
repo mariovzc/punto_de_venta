@@ -1,3 +1,4 @@
+p "Iniciando Seed"
 p "Creando Usuario"
 User.create(nombres: 'Usuario', email: 'usuario@gmail.com')
 p "Usuario Creado"
@@ -23,3 +24,4 @@ Product.where(id: 18, nombre:  'Pineapple', precio: 2.99).first_or_create
 Product.where(id: 19, nombre:  'Carton of Raspberries', precio: 1.99).first_or_create
 Product.where(id: 20, nombre:  'Bag of Peanuts', precio: 0.99).first_or_create
 p "Productos Agregados"
+p "Fin del Seed"

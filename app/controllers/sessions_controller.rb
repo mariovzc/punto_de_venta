@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
     if user  
       redirect_to :root, :notice => "Session Iniciada Correctamente"  
     else  
-      flash.now.alert = "Email or password was invalid."  
+      flash.now.alert = "Email or password was invalid."
+      redirect_to :root, :notice => "Clave Erronea"  
     end  
   end
 
