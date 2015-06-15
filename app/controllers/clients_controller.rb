@@ -4,7 +4,8 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
+    @per_page = 5
+    @clients = Client.paginate(per_page: @per_page, page: params[:page])
   end
 
   # GET /clients/1
@@ -53,11 +54,13 @@ class ClientsController < ApplicationController
 
   # DELETE /clients/1
   # DELETE /clients/1.json
-  def destroy
+  def destroy    
+    @client = Client.find(params[:id])
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Cliente Eliminado' }
+      format.html { redirect_to :clients }
       format.json { head :no_content }
+      format.js   { render :layout => false }
     end
   end
 

@@ -4,7 +4,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @per_page = 5
+    @products = Product.paginate(per_page: @per_page, page: params[:page])
   end
 
   # GET /products/1
@@ -53,21 +54,14 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1
   # DELETE /products/1.json
-  def destroy    
-   respond_to do |format|    
-    if @product.destroy        
-     format.json{render json: 'Ok', status: :ok}
-     format.html{
-      redirect_to :products, notice: 'Articulo Eliminada Satisfactoriamente'
-     }
-    else
-      format.json{render json: 'Error', status: :unprocessable_entity}
-      format.html{
-        redirect_to :products, notice: 'Error al Eliminar El Articulo'
-      }
+  def destroy       
+   @product = Product.find(params[:id])
+    @product.destroy
+    respond_to do |format|
+      format.html { redirect_to :products }
+      format.json { head :no_content }
+      format.js   { render :layout => false }
     end
-   end
-
   end
 
   private

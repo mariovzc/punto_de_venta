@@ -31,5 +31,7 @@ $(document).ready(function(){
       'client[telefono]': {number: solo_numeros}
     }
   });
-
+  $('.borrar_cliente').bind('ajax:success', function() {  
+        $(this).closest('tr').fadeOut();
+  });  
 });

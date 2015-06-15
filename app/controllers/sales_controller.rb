@@ -4,7 +4,8 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.all
+    @per_page = 5
+    @sales = Sale.paginate(per_page: @per_page, page: params[:page])
   end
 
   # GET /sales/1
@@ -54,11 +55,14 @@ class SalesController < ApplicationController
   # DELETE /sales/1
   # DELETE /sales/1.json
   def destroy
+   @sale = Sale.find(params[:id])
     @sale.destroy
     respond_to do |format|
-      format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
+      format.html { redirect_to :sales }
       format.json { head :no_content }
+      format.js   { render :layout => false }
     end
+
   end
 
   private

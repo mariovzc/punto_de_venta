@@ -1,0 +1,12 @@
+digraph models_diagram {
+	graph[overlap=false, splines=true]
+	"Sale" [shape=Mrecord, label="{Sale|id :integer\lfecha :date\lsubtotal :decimal\ltotal :decimal\lclient_id :integer\luser_id :integer\lestado :boolean\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"SaleDetail" [shape=Mrecord, label="{SaleDetail|id :integer\lsale_id :integer\lproduct_id :integer\lcantidad :integer\ltotal :decimal\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"Product" [shape=Mrecord, label="{Product|id :integer\lnombre :string\lprecio :decimal\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"Client" [shape=Mrecord, label="{Client|id :integer\lcedula :string\lnombres :string\ldireccion :string\ltelefono :string\lcorreo :string\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"User" [shape=Mrecord, label="{User|id :integer\lnombres :string\ldireccion :string\ltelefono :string\lsexo :boolean\lactivo :boolean\lobservacion :text\lfoto :string\lemail :string\lcrypted_password :string\lsalt :string\lcreated_at :datetime\lupdated_at :datetime\lremember_me_token :string\lremember_me_token_expires_at :datetime\l}"]
+	"Sale" -> "SaleDetail" [arrowtail=odot, arrowhead=crow, dir=both color="#F5796B"]
+	"Product" -> "SaleDetail" [arrowtail=odot, arrowhead=crow, dir=both color="#C8A45A"]
+	"Client" -> "Sale" [arrowtail=odot, arrowhead=crow, dir=both color="#80AE49"]
+	"User" -> "Sale" [arrowtail=odot, arrowhead=crow, dir=both color="#E90CB8"]
+}

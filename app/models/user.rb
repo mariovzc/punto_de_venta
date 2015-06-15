@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!    
-  
+  has_many :sales, :dependent => :destroy
+
   #Validations
   validates :nombres, presence: true
   validates :email, format: {with: /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\z/}, presence: true, uniqueness: true

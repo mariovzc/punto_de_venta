@@ -1,5 +1,10 @@
 <%content_for :stylesheet do%>
 <%=stylesheet_link_tag "app"%>
+  <%=stylesheet_link_tag "AdminLTE.css"%>
+  <%=stylesheet_link_tag "plugins/datatable/jquery.dataTables.css"%>
+  <%=stylesheet_link_tag "plugins/datatable/dataTables.bootstrap.css"%>
+  <%#=stylesheet_link_tag "bootstrap.css"%>
+
 <%end%>
 <%= render 'menu/menu'%>
 <div class="content-wrapper">
@@ -26,6 +31,9 @@
 </div><!-- /.content-wrapper -->
 <%= render 'menu/footer'%>
 <% content_for :javascript do %>
-<%=javascript_include_tag "jquery.validate.min.js"%>
-<%=javascript_include_tag "products"%>
+  <%=javascript_include_tag "jquery.validate.min.js"%>
+  <%=javascript_include_tag "products"%>
+  <%=javascript_include_tag "bootstrap.min.js"%>
+  <%=javascript_include_tag "plugins/datatable/jquery.dataTables.js"%>
+  <%=javascript_include_tag "plugins/datatable/dataTables.bootstrap.js"%>
 <%end%>

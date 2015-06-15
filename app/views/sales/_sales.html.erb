@@ -8,30 +8,33 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
+              <th>Cliente</th>
+              <th>Usuario</th>
               <th>Fecha</th>
               <th>Subtotal</th>
               <th>Total</th>
-              <th>Cliente</th>
-              <th>Usuario</th>
               <th>Estado</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <% @sales.each do |sale| %>
-          <tbody>
-            <tr>
-              <td><%= sale.fecha %></td>
-              <td><%= number_to_currency(sale.subtotal) %></td>
-              <td><%= number_to_currency(sale.total) %></td>
-              <td><%= sale.client %></td>
-              <td><%= sale.user %></td>
-              <td><%= sale.estado %></td>
-              <td><%= number_to_currency(product.precio) %></td>
-              <td><%= link_to "<button type='button' class='btn bg-purple3 btn-gradient btn-sm'> <span class='fa fa-pencil fa-2x'></span> </button>".html_safe, edit_sale_path(sale) %>
-              <%= link_to "<button type='button' class='btn bg-purple3 btn-gradient btn-sm'> <span class='fa fa-trash fa-2x'></span> </button>".html_safe, sale_path(sale), method: :delete, data: {confirm: 'Esta Seguro de Continuar con la Acción?'} %>
-              </td>
-            </tr>           
-          </tbody>
+            <tbody>
+              <tr>
+                <td><%= sale.client %></td>
+                <td><%= sale.user %></td>
+                <td><%= sale.fecha %></td>
+                <td><%= number_to_currency(sale.subtotal) %></td>
+                <td><%= number_to_currency(sale.total) %></td>
+                <td><%= sale.estado %></td>
+                <td><%= number_to_currency(product.precio) %></td>
+                <td>
+                  <%= link_to '<i class= "fa fa-pencil fa-2x"></i>'.html_safe, edit_sale_path(sale) %>
+                  <%= button_to  sale_path(sale), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: 'btn btn-social-icon btn-linkedin borrar_venta' do  %>
+                    <i class= "fa fa-trash fa-2x"></i>
+                  <%end%>
+                </td>
+              </tr>           
+            </tbody>
           <% end %>                   
         </table>
       </div><!-- /.box-body -->

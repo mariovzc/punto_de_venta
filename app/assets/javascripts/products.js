@@ -23,5 +23,18 @@ $(document).ready(function(){
       'product[precio]': {number: solo_numeros , required: requerido}
     }
   });
-
+  $('.borrar_producto').bind('ajax:success', function() {  
+        $(this).closest('tr').fadeOut();
+  });  
+/**
+ $('#productos').dataTable({
+    "iDisplayLength": 5,
+    "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todo"]],
+    "bPaginate": true,
+    "bLengthChange": true,
+    "bFilter": true,
+    "bSort": true,
+    "bInfo": true
+  }); 
+**/
 });

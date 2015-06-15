@@ -7,6 +7,7 @@
   <%=stylesheet_link_tag "_all-skins.min.css"%>
   <%=stylesheet_link_tag "AdminLTE.css"%>
   <%=javascript_include_tag "jquery.js"%>
+  <%=javascript_include_tag "application.js"%>
   <%=yield :stylesheet%>
 </head>
 <body class="skin-blue">
@@ -16,7 +17,6 @@
 
 <%=javascript_include_tag "app.min.js"%>
 <%=javascript_include_tag "bootstrap.js"%>
-<%=javascript_include_tag "application"%>
 <%=yield :javascript%>
 </body>
 </html>
