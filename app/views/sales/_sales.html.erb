@@ -13,22 +13,20 @@
               <th>Fecha</th>
               <th>Subtotal</th>
               <th>Total</th>
-              <th>Estado</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <% @sales.each do |sale| %>
             <tbody>
               <tr>
-                <td><%= sale.client %></td>
-                <td><%= sale.user %></td>
-                <td><%= sale.fecha %></td>
-                <td><%= number_to_currency(sale.subtotal) %></td>
-                <td><%= number_to_currency(sale.total) %></td>
-                <td><%= sale.estado %></td>
-                <td><%= number_to_currency(product.precio) %></td>
+                <td><%= sale.client.nombres %></td>
+                <td><%= sale.user.nombres %></td>
+                <td><%= (sale.fecha).strftime("%d/%m/%Y") %></td>
+                <td><%= number_to_currency(sale.subtotal.nil? ? 0 : sale.subtotal) %></td>
+                <td><%= number_to_currency(sale.total.nil? ? 0 : sale.total) %></td>
                 <td>
-                  <%= link_to '<i class= "fa fa-pencil fa-2x"></i>'.html_safe, edit_sale_path(sale) %>
+                  <%= link_to '<i class= "fa fa-eye"></i>'.html_safe, (sale),class: 'btn btn-social-icon btn-linkedin' %>
+                  <%= link_to '<i class= "fa fa-pencil"></i>'.html_safe, edit_sale_path(sale),class: 'btn btn-social-icon btn-linkedin' %>
                   <%= button_to  sale_path(sale), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: 'btn btn-social-icon btn-linkedin borrar_venta' do  %>
                     <i class= "fa fa-trash fa-2x"></i>
                   <%end%>

@@ -16,20 +16,25 @@ class SalesController < ApplicationController
   # GET /sales/new
   def new
     @sale = Sale.new
+    @clients = Client.all
   end
 
   # GET /sales/1/edit
   def edit
+    @clients = Client.all
   end
 
   # POST /sales
   # POST /sales.json
   def create
-    @sale = Sale.new(sale_params)
+    cliente = Client.find(sale_params[:client_id])
+    temp = sale_params
+    temp["client_id"] = cliente.id
+    @sale = Sale.new(temp)
 
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+        format.html { redirect_to :sales, notice: 'Venta Creada' }
         format.json { render :show, status: :created, location: @sale }
       else
         format.html { render :new }
@@ -43,7 +48,7 @@ class SalesController < ApplicationController
   def update
     respond_to do |format|
       if @sale.update(sale_params)
-        format.html { redirect_to @sale, notice: 'Sale was successfully updated.' }
+        format.html { redirect_to :sales, notice: 'Venta Actualizada' }
         format.json { render :show, status: :ok, location: @sale }
       else
         format.html { render :edit }
