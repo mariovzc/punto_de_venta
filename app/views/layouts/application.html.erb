@@ -2,14 +2,20 @@
 <html>
 <head>
   <title>Facturacion</title>
-  <%=stylesheet_link_tag "bootstrap.css"%>
    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<% if params[:format] && params[:format] == 'pdf' %>
+  <%=wicked_pdf_stylesheet_link_tag "_all-skins.min"%>
+  <%=wicked_pdf_stylesheet_link_tag "AdminLTE"%>
+  <%=wicked_pdf_stylesheet_link_tag "bootstrap"%>
+  <%=wicked_pdf_javascript_include_tag "jquery"%>
+  <%=wicked_pdf_javascript_include_tag "application"%>
+<% else %>
   <%=stylesheet_link_tag "_all-skins.min.css"%>
   <%=stylesheet_link_tag "AdminLTE.css"%>
   <%=stylesheet_link_tag "bootstrap.css"%>
-
   <%=javascript_include_tag "jquery.js"%>
   <%=javascript_include_tag "application.js"%>
+<% end %>
   <%=yield :stylesheet%>
 </head>
 <body class="skin-blue">

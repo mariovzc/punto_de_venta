@@ -31,6 +31,12 @@ class SalesController < ApplicationController
         @sale_details = SaleDetail.where(sale_id: @sale.id).paginate(per_page: @per_page, page: params[:page])
         render xlsx: "show", disposition: "attachment", filename: "Venta_No_#{@sale.id}.xlsx"
       }
+      format.pdf {
+        render pdf: "Venta",
+        layout: "application",
+        print_media_type: true,
+       disposition: "attachment"
+      }
     end
   end
 

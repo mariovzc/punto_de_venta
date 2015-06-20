@@ -28,6 +28,7 @@
                   <%= link_to '<i class= "fa fa-eye"></i>'.html_safe, (sale),class: 'btn btn-social-icon btn-tumblr' %>
                   <%= link_to '<i class= "fa fa-pencil"></i>'.html_safe, edit_sale_path(sale),class: 'btn btn-social-icon btn-tumblr' %>
                   <%= link_to '<i class= "fa fa-file-excel-o"></i>'.html_safe, sale_path(sale, format: :xlsx),class: 'btn btn-social-icon btn-tumblr' %>
+                  <%= link_to '<i class= "fa fa-file-pdf-o"></i>'.html_safe, sale_path(sale, format: :pdf),class: 'btn btn-social-icon btn-tumblr' %>
                   <%= button_to  sale_path(sale), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: 'btn btn-social-icon btn-tumblr borrar_venta' do  %>
                     <i class= "fa fa-trash fa-2x"></i>
                   <%end%>

@@ -13,6 +13,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'will_paginate', '~> 3.0.7'
 #Generar XLSX
 gem 'axlsx_rails', '~> 0.3.0'
+#Generar PDF
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+#gem "pdfkit" 
 group :development, :test do
 	gem 'byebug'
 	gem 'railroady'
