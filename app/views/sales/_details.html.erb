@@ -23,8 +23,8 @@
                 <td><%= detail.cantidad %></td>
                 <td><%= number_to_currency(detail.total) %></td>
                 <td>
-                  <button type='button' id='edit-sale-detail-<%=detail.id%>'class='btn btn-social-icon btn-linkedin edit-sale-details' data-toggle="modal" data-target="#edit-details"> <span class='fa fa-pencil-square-o'></span> </button>
-                  <%= button_to  sale_detail_path(detail), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: 'btn btn-social-icon btn-linkedin borrar_detalle' do  %>
+                  <button type='button' id='edit-sale-detail-<%=detail.id%>'class='btn btn-social-icon btn-tumblr edit-sale-details' data-toggle="modal" data-target="#edit-details"> <span class='fa fa-pencil-square-o'></span> </button>
+                  <%= button_to  sale_detail_path(detail), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: 'btn btn-social-icon btn-tumblr borrar_detalle' do  %>
                     <i class= "fa fa-trash fa-2x"></i>
                   <%end%>
                 </td>

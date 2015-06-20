@@ -24,8 +24,8 @@
               <td><%= client.direccion %></td>
               <td><%= client.telefono %></td>
               <td><%= client.correo %></td>
-              <td><%= link_to '<i class= "fa fa-pencil fa-2x"></i>'.html_safe, edit_client_path(client), class: 'btn btn-social-icon btn-linkedin'  %>
-              <%= button_to  client_path(client), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: 'btn btn-social-icon btn-linkedin borrar_cliente' do  %>
+              <td><%= link_to '<i class= "fa fa-pencil fa-2x"></i>'.html_safe, edit_client_path(client), class: 'btn btn-social-icon btn-tumblr'  %>
+              <%= button_to  client_path(client), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: 'btn btn-social-icon btn-tumblr borrar_cliente' do  %>
               <i class= "fa fa-trash fa-2x"></i>
               <%end%>    
               </td>
