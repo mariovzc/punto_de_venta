@@ -20,49 +20,50 @@
      <h4>  <i class="icon fa fa-check"></i><%= msg %></h4>
   </div>
   <% end %>
-
-  <%= link_to "<i class='fa fa-cart-plus'></i> Detalle Venta".html_safe, new_sale_path, class: 'btn btn-app', id: 'btn-nuevo'%>
+<br><br>
   <section class="invoice">
-          <!-- title row -->
-          <div class="row">
-            <div class="col-xs-12">
-              <h2 class="page-header">
-                <i class="fa fa-globe"></i> AdminLTE, Inc.
-                <small class="pull-right">Fecha: <%=(@sale.fecha).strftime("%d/%m/%Y")%></small>
-              </h2>
-            </div><!-- /.col -->
-          </div>
-          <!-- info row -->
-          <div class="row invoice-info">
-            <div class="col-sm-4 invoice-col text-center">
-              <address>
-                <strong>Cliente</strong><br>
-                <%= @sale.client.cedula %><br>
-                <%= @sale.client.nombres %><br>
-                <%= @sale.client.direccion %><br>
-                <%= @sale.client.telefono %><br>
-                <%= @sale.client.correo %>
-              </address>
-            </div><!-- /.col -->
-            <div class="col-sm-2 invoice-col text-center">
-              <address>
-                <strong>Vendedor</strong><br>
-                <%= @sale.user.nombres %> <br>
-              </address>
-            </div><!-- /.col -->
-            <div class="col-sm-4 invoice-col text-center">
-              <b>SubTotal: </b> <%= number_to_currency(@sale.subtotal.nil? ? 0 : @sale.subtotal) %><br>
-              <b>Total: </b> <%= number_to_currency(@sale.total.nil? ? 0 : @sale.total) %><br>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+    <!-- title row -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="page-header">
+          <i class="fa fa-money "></i> Venta No° <%=@sale.id%>.
+          <small class="pull-right"><b>Fecha: <%=(@sale.fecha).strftime("%d/%m/%Y")%></b></small>
+        </h2>
+      </div><!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="row invoice-info">
+      <div class="col-sm-4 invoice-col text-center">
+        <address>
+          <strong>Cliente</strong><br>
+          <b>C.C.</b> <%= @sale.client.cedula %><br>
+          <b>Nombre: </b><%= @sale.client.nombres %><br>
+          <b>Direccion: </b><%= @sale.client.direccion %><br>
+          <b>Telefono: </b><%= @sale.client.telefono %><br>
+          <b>Correo: </b><%= @sale.client.correo %>
+        </address>
+      </div><!-- /.col -->
+      <div class="col-sm-2 invoice-col text-center">
+        <address>
+          <strong>Vendedor</strong><br>
+          <%= @sale.user.nombres %> <br>
+        </address>
+      </div><!-- /.col -->
+      <div class="col-sm-3 invoice-col text-center">
+        <b>SubTotal: </b> <%= number_to_currency(@sale.subtotal.nil? ? 0 : @sale.subtotal) %><br>
+        <b>Total: </b> <%= number_to_currency(@sale.total.nil? ? 0 : @sale.total) %><br>
+      </div><!-- /.col -->
+      <div class="col-sm-2 invoice-col text-center">
+          <button id="btn-nuevo" type="button" class="btn btn-app" data-toggle="modal" data-target="#add-detail"><i class='fa fa-cart-plus'></i> Detalle Venta</button>
+      </div>
+    </div><!-- /.row -->
 
-          <!-- Table row -->
-          <div class="row">
-            <div class="col-xs-12 table-responsive">
-              <%= render 'details'%>  
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </section>
+    <!-- Table row -->
+    <div class="row">
+      <div class="col-xs-12 table-responsive">
+        <%= render 'details'%>  
+      </div><!-- /.col -->
+    </div><!-- /.row -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 <%= render 'menu/footer'%>
@@ -70,3 +71,73 @@
   <%=javascript_include_tag "jquery.validate.min.js"%>
   <%=javascript_include_tag "sales"%>
 <%end%>
+<div id="add-detail" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Agregar Detalle</h4>
+      </div>
+      <div class="modal-body">
+      <%= form_for(@sale_detail) do |f| %>
+          <%= f.hidden_field :sale_id, value: @sale.id %>
+        <div class="form-group">
+          <label for="inputPassword3" class="col-sm-2 control-label">Producto</label>
+          <div class="col-sm-10">
+            <%= f.select :product_id ,options_from_collection_for_select(@products,'id','nombre', @sale_detail.product.nil? ? nil : @budget_sub_category.product.id),{},{class: 'form-control'}%>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="inputPassword3" class="col-sm-2 control-label">Cantidad</label>
+          <div class="col-sm-6">
+            <%= f.number_field :cantidad, placeholder: 'Digite la Cantidad', class: 'form-control' %>
+          </div>
+        </div>
+        <br><br>
+      </div>
+      <div class="modal-footer">
+          <%= f.submit 'Agregar', class: 'btn btn-default' %>
+      <% end %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="edit-details" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Agregar Detalle</h4>
+      </div>
+      <div class="modal-body">
+      <%= form_for @sale_detail, format: :json, remote: true, method: :put, html: {id: 'edit_sale_detail', class: 'edit_sale_detail'} do |f| %>
+          <%= f.hidden_field :sale_id, value: @sale.id %>
+        <div class="form-group">
+          <label for="inputPassword3" class="col-sm-2 control-label">Producto</label>
+          <div class="col-sm-10">
+            <%=select_tag('sale_detail[product_id]', options_from_collection_for_select(@products,'id','nombre', @sale_detail.product.nil? ? nil : @budget_sub_category.product.id), id: 'edit_product') %>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="inputPassword3" class="col-sm-2 control-label">Cantidad</label>
+          <div class="col-sm-6">
+            <%= f.number_field :cantidad, placeholder: 'Digite la Cantidad', class: 'form-control', id: 'edit_cantidad' %>
+          </div>
+        </div>
+        <br><br>
+      </div>
+      <div class="modal-footer">
+          <%= f.submit 'Agregar', class: 'btn btn-default' %>
+      <% end %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
+  </div>
+</div>

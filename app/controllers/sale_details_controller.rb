@@ -1,5 +1,6 @@
 class SaleDetailsController < ApplicationController
   before_action :set_sale_detail, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /sale_details
   # GET /sale_details.json
@@ -28,7 +29,7 @@ class SaleDetailsController < ApplicationController
 
     respond_to do |format|
       if @sale_detail.save
-        format.html { redirect_to @sale_detail, notice: 'Sale detail was successfully created.' }
+        format.html { redirect_to :back, notice: 'Detalle Agregado' }
         format.json { render :show, status: :created, location: @sale_detail }
       else
         format.html { render :new }
@@ -40,15 +41,11 @@ class SaleDetailsController < ApplicationController
   # PATCH/PUT /sale_details/1
   # PATCH/PUT /sale_details/1.json
   def update
-    respond_to do |format|
       if @sale_detail.update(sale_detail_params)
-        format.html { redirect_to @sale_detail, notice: 'Sale detail was successfully updated.' }
-        format.json { render :show, status: :ok, location: @sale_detail }
+        redirect_to :back, notice: 'Detalle Editado'
       else
-        format.html { render :edit }
-        format.json { render json: @sale_detail.errors, status: :unprocessable_entity }
+        render :edit 
       end
-    end
   end
 
   # DELETE /sale_details/1
@@ -56,7 +53,7 @@ class SaleDetailsController < ApplicationController
   def destroy
     @sale_detail.destroy
     respond_to do |format|
-      format.html { redirect_to sale_details_url, notice: 'Sale detail was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Registro Eliminado' }
       format.json { head :no_content }
     end
   end

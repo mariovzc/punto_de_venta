@@ -1,16 +1,4 @@
 <%= form_for(@sale_detail) do |f| %>
-  <% if @sale_detail.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sale_detail.errors.count, "error") %> prohibited this sale_detail from being saved:</h2>
-
-      <ul>
-      <% @sale_detail.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="field">
     <%= f.label :sale_id %><br>
     <%= f.text_field :sale_id %>

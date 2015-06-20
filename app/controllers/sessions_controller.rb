@@ -10,12 +10,12 @@ class SessionsController < ApplicationController
     if user  
       redirect_to :root
     else  
-      redirect_to :root, :notice => "Clave Erronea"  
+      redirect_to :root
     end  
   end
 
   def destroy
   	logout  
-  	redirect_to root_url, :notice => "Logged out!"
+  	redirect_to root_url
   end
 end

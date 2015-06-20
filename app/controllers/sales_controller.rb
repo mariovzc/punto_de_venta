@@ -1,6 +1,10 @@
 class SalesController < ApplicationController
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
-
+=begin
+  Pendientes
+  1 - SACAR PRODUCTOS YA AGREGADOS en el Create
+  2 - CARGAR PRODUCTOS EN EL EDIT CUANDO SE REALIZE EL FILTRO DEL CREATE
+=end
   # GET /sales
   # GET /sales.json
   def index
@@ -11,6 +15,11 @@ class SalesController < ApplicationController
   # GET /sales/1
   # GET /sales/1.json
   def show
+    @per_page = 5
+    @sale_details = SaleDetail.where(sale_id: @sale.id).paginate(per_page: @per_page, page: params[:page])
+     
+    @sale_detail = SaleDetail.new
+    @products = Product.all
   end
 
   # GET /sales/new

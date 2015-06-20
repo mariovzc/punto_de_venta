@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-xs-12">              
+    <div class="box">
+      <div class="box-header text-center">
+        <h3 class="box-title">Lista de Articulos</h3>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Sub Total</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <% @sale_details.each do |detail| %>
+            <tbody>
+              <tr>
+                <td><%= detail.product.nombre %></td>
+                <td><%= number_to_currency(detail.product.precio) %></td>
+                <td><%= detail.cantidad %></td>
+                <td><%= number_to_currency(detail.total) %></td>
+                <td>
+                  <button type='button' id='edit-sale-detail-<%=detail.id%>'class='btn btn-social-icon btn-linkedin edit-sale-details' data-toggle="modal" data-target="#edit-details"> <span class='fa fa-pencil-square-o'></span> </button>
+                  <%= button_to  sale_detail_path(detail), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: 'btn btn-social-icon btn-linkedin borrar_detalle' do  %>
+                    <i class= "fa fa-trash fa-2x"></i>
+                  <%end%>
+                </td>
+              </tr>           
+            </tbody>
+          <% end %>
+          <%= will_paginate @sale_details, previous_label: "Anterior", next_label: "Siguiente", class: 'flickr_pagination pull-right '%>                       
+        </table>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+  </div><!-- /.col -->
+</div><!-- /.row -->
