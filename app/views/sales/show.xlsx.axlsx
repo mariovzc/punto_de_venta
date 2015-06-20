@@ -1,0 +1,31 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: 'Venta') do |sheet|
+	wb.styles do |s|
+		normal = s.add_style b: true, :alignment => {:horizontal=> :center, :vertical=> :center, :wrap_text => true}, sz: 10, border: {color: "000000", style: :thin, edges: [:left, :top, :right, :bottom]}
+		yellow = s.add_style bg_color: "FFFF00", b: true, :alignment => {:horizontal=> :center, :vertical=> :center, :wrap_text => true}, sz: 10, border: {color: "000000", style: :thin, edges: [:left, :top, :right, :bottom]}
+		bold = s.add_style b: true
+		bold_1 = s.add_style b: true, border: {color: "000000", style: :thin, edges: [:left, :top, :right, :bottom]}
+		principal = s.add_style b: true, sz: 16, :alignment => {:horizontal=> :center, :vertical=> :center, :wrap_text => true} 
+		style_1 = s.add_style border: {color: "000000", style: :thin, edges: [:left, :top, :right, :bottom]}
+		style_2 = s.add_style b: true, border: {color: "000000", style: :thin, edges: [:left, :top, :right, :bottom]}
+    style_3 = s.add_style :alignment => {:horizontal=> :center, :vertical=> :center, :wrap_text => true}
+    style_4 = s.add_style border: {color: "000000", style: :thin, edges: [:bottom]}
+
+
+		sheet.add_row ["Venta - No. #{@sale.id}"], style: principal, height: 80
+		sheet.merge_cells "A1:D1"
+		sheet.add_row
+		sheet.add_row ["Cliente", "Usuario","Fecha"], style: bold
+		sheet.add_row [@sale.client.nombres, @sale.user.nombres,(@sale.fecha).strftime("%d/%m/%Y")], style: style_1
+		sheet.add_row ["PRODUCTO", "CANTIDAD", "PRECIO UNITARIO", "SUBTOTAL"], style: bold_1, widths: [17, 15, 15,18,], height: 20
+		cont = 5
+		@sale_details.each do |dt|			
+			sheet.add_row [dt.product.nombre, dt.cantidad, number_to_currency(dt.product.precio.nil? ? '0.0'.to_d : dt.product.precio), number_to_currency(dt.total.nil? ? '0.0'.to_d : dt.total)], style: style_1
+			cont+=1
+		end
+		sheet.add_row ['','',"Sub Total",number_to_currency(@sale.subtotal)], style: [nil,nil,style_2,style_2]
+		sheet.add_row ['','',"Iva",number_to_currency((@sale.subtotal * 0.16))], style: [nil,nil,style_2,style_2]
+		sheet.add_row ['','',"Total",number_to_currency(@sale.total)], style: [nil,nil,style_2,style_2]
+
+	end
+end

@@ -20,6 +20,18 @@ class SalesController < ApplicationController
      
     @sale_detail = SaleDetail.new
     @products = Product.all
+    @sale = Sale.find(params[:id])
+    respond_to do |format|      
+      format.html{ render :show }
+      format.json{
+        render json: @product, status: :ok
+      }
+      format.xlsx {
+        #AGREgar excel
+        @sale_details = SaleDetail.where(sale_id: @sale.id).paginate(per_page: @per_page, page: params[:page])
+        render xlsx: "show", disposition: "attachment", filename: "Venta_No_#{@sale.id}.xlsx"
+      }
+    end
   end
 
   # GET /sales/new
