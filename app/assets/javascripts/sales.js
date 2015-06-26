@@ -19,7 +19,6 @@ $(document).ready(function(){
 		$('#edit_sale_detail').attr('action',temp);
 	});
 	$(document).on('ajax:success', '#edit_sale_detail', function(event, data){
-		alert("siii");
 		location.reload();
 	});
 	$(document).on('ajax:error', '#edit_sale_detail', function(event, data){

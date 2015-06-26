@@ -6,7 +6,7 @@ class Sale < ActiveRecord::Base
   before_save :add_total
   private
   def add_total
-  	iva = self.subtotal * 0.16
-  	self.total = self.subtotal + iva
+  	iva = (self.subtotal.nil? ? 0 : self.subtotal) * 0.16
+  	self.total = (self.subtotal.nil? ? 0 : self.subtotal) + iva
   end
 end

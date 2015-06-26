@@ -24,7 +24,7 @@ class SalesController < ApplicationController
     respond_to do |format|      
       format.html{ render :show }
       format.json{
-        render json: @product, status: :ok
+        render json: @sale, status: :ok
       }
       format.xlsx {
         #AGREgar excel
