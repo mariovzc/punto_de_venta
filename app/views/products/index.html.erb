@@ -1,10 +1,5 @@
 <%content_for :stylesheet do%>
-<%=stylesheet_link_tag "app"%>
-  <%=stylesheet_link_tag "AdminLTE.css"%>
-  <%=stylesheet_link_tag "plugins/datatable/jquery.dataTables.css"%>
-  <%=stylesheet_link_tag "plugins/datatable/dataTables.bootstrap.css"%>
-  <%#=stylesheet_link_tag "bootstrap.css"%>
-
+  <%=stylesheet_link_tag "app"%>
 <%end%>
 <%= render 'menu/menu'%>
 <div class="content-wrapper">
@@ -12,7 +7,7 @@
   <section class="content-header">
     <ol class="breadcrumb" id="miniguia">
       <li>
-        <%= link_to "<i class='fa fa-file-text'></i> Articulos".html_safe, :products, id:'submenu' %>
+        <%= link_to "<i class='fa fa-cart-plus'></i> Productos".html_safe, :products, id:'submenu' %>
       </li>
       <li class="active" id="submenu2">Index</li>
     </ol>
@@ -25,15 +20,12 @@
      <h4>  <i class="icon fa fa-check"></i><%= msg %></h4>
   </div>
   <% end %>
-  <%= link_to "<i class='fa fa-cart-plus'></i> Nuevo Articulo".html_safe, new_product_path, class: 'btn btn-app', id: 'btn-nuevo'%>
+  <%= link_to "<i class='fa fa-cart-plus'></i> Nuevo Producto".html_safe, new_product_path, class: 'btn btn-app', id: 'btn-nuevo'%>
   <%= render 'products'%>  
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 <%= render 'menu/footer'%>
 <% content_for :javascript do %>
   <%=javascript_include_tag "jquery.validate.min.js"%>
-  <%=javascript_include_tag "products"%>
-  <%=javascript_include_tag "bootstrap.min.js"%>
-  <%=javascript_include_tag "plugins/datatable/jquery.dataTables.js"%>
-  <%=javascript_include_tag "plugins/datatable/dataTables.bootstrap.js"%>
+  <%=javascript_include_tag "sales"%>
 <%end%>
