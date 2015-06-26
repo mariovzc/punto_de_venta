@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to :users, notice: 'Venta Actualizada' }
-        format.json { redirect_to :users }
+        format.json { redirect_to :back }
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
